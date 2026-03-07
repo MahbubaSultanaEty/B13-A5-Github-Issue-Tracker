@@ -4,8 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Github Issue Tracker | Log In</title>
+
+        <!-- tailwind and daisy link -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- google fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- font-awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
-<body>
-    
+<body class=" min-h-screen flex items-center justify-center bg-gray-200">
+    <div class=" space-y-1   bg-white shadow  mx-auto text-center p-6 rounded">
+        <div class="logo  mx-auto pt-1 ">
+            <div class="flex justify-center">
+            <img src="./assets/github-logo.png" alt="github logo">
+            </div>
+            <h2 class="text-lg md:text-xl font-bold">GitHub Issues Tracker</h2>
+            <p class="text-xs font-semibold">Sign in to manage your issues</p>
+        </div>
+
+        <!-- login form  -->
+         <fieldset class="fieldset border-base-300  p-2 mx-auto text-black">
+
+            <label class="label font-semibold">Username</label>
+            <input type="email" class="input w-full" placeholder="Enter Username" />
+            <p class="text-left mb-2 text-purple-950">Default: admin</p>
+
+            <label class="label font-semibold">Password</label>
+            <input type="password" class="input w-full" placeholder="Enter Password" />
+            <p class="text-left  text-purple-950">Default: admin123</p>
+
+            <button class="btn btn-primary text-white mt-4">Sign In</button>
+        </fieldset>
+        
+
+            <!-- demo-credential -->
+            <div class="text-center ">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="flex-1 h-px bg-gray-300"></div>
+                    <span class="text-gray-500 text-sm">OR</span>
+                    <div class="flex-1 h-px bg-gray-300"></div>
+                </div>
+
+                <p class="text-sm text-gray-500 ">Demo Credentials:</p>
+
+                <div class="bg-base-200 rounded-lg py-1 px-20 inline-block shadow-sm">
+                    <p class="text-sm"><span class="font-semibold">Username:</span> admin</p>
+                    <p class="text-sm"><span class="font-semibold">Password:</span> admin123</p>
+                </div>
+            </div>
+        
+    </div>
 </body>
 </html>
