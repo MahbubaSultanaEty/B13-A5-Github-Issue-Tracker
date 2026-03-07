@@ -29,17 +29,17 @@
         </div>
 
         <!-- login form  -->
-         <fieldset class="fieldset border-base-300  p-2 mx-auto text-black">
+         <fieldset class="fieldset border-base-300 mx-auto ">
 
-            <label class="label font-semibold">Username</label>
-            <input type="email" class="input w-full" placeholder="Enter Username" />
+            <label class="label font-semibold text-black">Username</label>
+            <input id="username-input" type="text" class="input w-full" placeholder="Enter Username" />
             <p class="text-left mb-2 text-purple-950">Default: admin</p>
 
-            <label class="label font-semibold">Password</label>
-            <input type="password" class="input w-full" placeholder="Enter Password" />
-            <p class="text-left  text-purple-950">Default: admin123</p>
+            <label class="label font-semibold text-black">Password</label>
+            <input id="password-input" type="password" class="input w-full" placeholder="Enter Password" />
+            <p  class="text-left  text-purple-950">Default: admin123</p>
 
-            <button class="btn btn-primary text-white mt-4">Sign In</button>
+            <button id="sign-in-btn" class="btn btn-primary text-white mt-4">Sign In</button>
         </fieldset>
         
 
@@ -60,5 +60,7 @@
             </div>
         
     </div>
+
+    <script src="./script/login..js"></script>
 </body>
 </html>
