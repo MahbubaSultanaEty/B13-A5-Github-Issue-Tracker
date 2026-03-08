@@ -36,7 +36,7 @@
     <!-- search input -->
         <label class="input  w-[100px] md:w-full max-w-md">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" required placeholder="Search  Issues" />
+        <input id="searchInput" type="search" required placeholder="Search  Issues" />
         </label>
             <button class="btn btn-primary">Search</button>
         </div>
@@ -55,6 +55,10 @@
     <!-- main section -->
          <section class=" bg-white my-4 rounded">
 
+            <!-- loading spinner -->
+            <div id="loading-spinner" class=" hidden flex justify-center ">
+                <span class="loading loading-spinner loading-xl"></span></div>
+
             <!-- count and open and closed sign -->
             <div class="flex justify-between items-center p-3 mt-4 border-b border-gray-400 ">
                 <!-- card count div -->
@@ -63,7 +67,7 @@
                     <img src="./assets/Aperture.png" alt="">
                     </div>
                     <div class=" ">
-                        <h3 class="text-xl font-semibold md:text-2xl">50 Issues</h3>
+                        <h3 class="text-xl font-semibold md:text-2xl"><span id="card-count">50</span> Issues</h3>
                         <p class="text-xs font-semibold md:text-sm">Track and manage your project issues</p>
                     </div>
                     
@@ -71,7 +75,7 @@
                 <!-- open and closed sign -->
                 <div class="flex  gap-3 font-semibold text-sm md:text-sm md:mx-8 md:gap-6">
                     <p><i class="fa-solid fa-circle text-emerald-600"></i> Open</p>
-                    <p><i class="fa-solid fa-circle text-[#570DF8]"></i> Closed</p>
+                    <p><i class="fa-solid fa-circle text-purple-600"></i> Closed</p>
                 </div>
             </div>
 

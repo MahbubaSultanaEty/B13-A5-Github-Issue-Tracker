@@ -3,6 +3,9 @@ const cardContainer = document.getElementById("card-container");
 const allTabBtn = document.getElementById("all-btn");
 const openTabBtn = document.getElementById("open-btn");
 const closedTabBtn = document.getElementById("close-btn");
+const cardCount = document.getElementById("card-count");
+const loadingSpinner= document.getElementById("loading-spinner")
+
 
 async function loadAllCard() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
@@ -14,6 +17,7 @@ loadAllCard()
 
 function displayCard(cards) {
     console.log(cards);
+    loadingActive()
     cardContainer.innerHTML = " ";
 
     cards.forEach(card => {
@@ -51,23 +55,38 @@ function displayCard(cards) {
                      </div>
                 </div>      
         `
-        cardContainer.appendChild(cardDiv)
+        cardCount.textContent = cards.length;
+        cardContainer.appendChild(cardDiv);
+        loadingRemove()
     });
 }
 
 
-// open or closed issues
+// open issues
 async function openIssue() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
     const allIssues = data.data;
     // console.log(allIssues);
-        const filterWords = allIssues.filter(issue => issue.status == "open");      
-        displayCard(filterWords);
+        const filterOpenCard = allIssues.filter(issue => issue.status == "open");      
+    displayCard(filterOpenCard);
+    cardCount.textContent = filterOpenCard.length;
+}
+
+// closed issues
+
+async function closedIssue() {
+    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await res.json();
+    const allIssues = data.data;
+    // console.log(allIssues);
+        const filterClosedCard = allIssues.filter(issue => issue.status == "closed");      
+    displayCard(filterClosedCard);
+    cardCount.textContent = filterClosedCard.length;
 }
 
 // toggle tabs button
-  // open tab
+//   open tab
  openTabBtn.addEventListener("click", function () {    
         cardContainer.innerHTML = " ";
         openIssue();
@@ -80,55 +99,41 @@ function togglebtn(id) {
     cardContainer.innerHTML = " ";
     const selectedBtn = document.getElementById(id);
     if (selectedBtn == openTabBtn) {
+        loadingActive()
      allTabBtn.classList.remove("btn-primary");
     closedTabBtn.classList.remove("btn-primary");
         openTabBtn.classList.add("btn-primary");
-
+        openIssue(); 
+        loadingRemove()
     }
     if (selectedBtn == closedTabBtn) {
-
+        loadingActive()
      allTabBtn.classList.remove("btn-primary");
     closedTabBtn.classList.add("btn-primary");
-    openTabBtn.classList.remove("btn-primary");
+        openTabBtn.classList.remove("btn-primary");
+        closedIssue();
+        loadingRemove();
     }
     else {
+        loadingActive()
         allTabBtn.classList.add("btn-primary");
     closedTabBtn.classList.remove("btn-primary");
         openTabBtn.classList.remove("btn-primary");
         cardContainer.innerHTML = " ";
         loadAllCard();
+        loadingRemove();
     }
 
 }
 
 
-assignee
-: 
-"jane_smith"
-author
-: 
-"john_doe"
-createdAt
-: 
-"2024-01-15T10:30:00Z"
-description
-: 
-"The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior."
-id
-: 
-1
-labels
-: 
-(2) ['bug', 'help wanted']
-priority
-: 
-"high"
-status
-: 
-"open"
-title
-: 
-"Fix navigation menu on mobile devices"
-updatedAt
-: 
-"2024-01-15T10:30:00Z"
+// loadingSpinner
+function loadingActive() {
+    loadingSpinner.classList.remove("hidden");
+    cardContainer.innerHTML = " ";
+    console.log(loadingSpinner)
+}
+function loadingRemove() {
+    loadingSpinner.classList.add("hidden")
+}
+console.log(loadingSpinner)
