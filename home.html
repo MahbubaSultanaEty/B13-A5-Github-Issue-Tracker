@@ -56,8 +56,9 @@
          <section class=" bg-white my-4 rounded">
 
             <!-- loading spinner -->
-            <div id="loading-spinner" class=" hidden flex justify-center ">
-                <span class="loading loading-spinner loading-xl"></span></div>
+            <div id="loading-spinner" class="flex  justify-center ">
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
 
             <!-- count and open and closed sign -->
             <div class="flex justify-between items-center p-3 mt-4 border-b border-gray-400 ">
@@ -109,6 +110,23 @@
                  
              </div>
         </section>
+
+        
+            <!-- Open the modal using ID.showModal() method -->
+
+    <dialog id="card-detail-modal" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Hello!</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div class="modal-action">
+        <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+        </form>
+        </div>
+    </div>
+    </dialog>
+       
     </main>
 
     <script src="./script/home.js"></script>

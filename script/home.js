@@ -4,9 +4,22 @@ const allTabBtn = document.getElementById("all-btn");
 const openTabBtn = document.getElementById("open-btn");
 const closedTabBtn = document.getElementById("close-btn");
 const cardCount = document.getElementById("card-count");
-const loadingSpinner= document.getElementById("loading-spinner")
+const loadingSpinner = document.getElementById("loading-spinner");
+const cardDetailModal =document.getElementById("card-detail-modal")
 
 
+// loadingSpinner
+function loadingActive() {
+    loadingSpinner.classList.remove("hidden")
+    cardContainer.innerHTML = " ";
+    console.log(loadingSpinner)
+}
+function loadingRemove() {
+    loadingSpinner.classList.add("hidden");
+    console.log(loadingSpinner);
+}
+
+// load all card
 async function loadAllCard() {
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
@@ -26,14 +39,14 @@ function displayCard(cards) {
         if (card.status == "open") {
             cardDiv.className = "card border-green-400 border border-t-4 border-t-green-600 shadow-sm ";
         } else {
-             cardDiv.className = "card border-purple-400 border border-t-4 border-t-pruple-800 shadow-sm ";
+             cardDiv.className = "card border-purple-400 border border-t-4 border-t-pruple-900 shadow-sm ";
         }
 
-        const priorityClass = card.priority == "high" ? "badge-error" : card.priority == "low" ? "bg-gray-300" : "badge-warning";
+        const priorityClass = card.priority == "high" ? "badge-error" : card.priority == "low" ? "bg-gray-400 text-white" : "badge-warning";
 
         cardDiv.innerHTML = `
             
-                <div class="card-body space-y-1">
+                <div onclick="openModal(${card.id})" class="card-body space-y-1">
                     <div class="flex  justify-between">
                         <div class="flex ">
                             ${card.status == "open"? `<img src="./assets/Open-Status.png" alt="">`: `<img src="./assets/Closed- Status .png" alt="">`}
@@ -46,7 +59,11 @@ function displayCard(cards) {
                         <p class="line-clamp-2 text-gray-700">${card.description}</p>
                         <div class="card-actions justify-start my-2">
                         <div class="badge bg-red-100 badge-outline badge-error">${card.labels[0] == "bug"? ` <i class="fa-solid fa-bug"></i>`: card.labels[0] == "enhancement"?`<i class="fa-solid fa-rocket"></i>`: `<i class="fa-brands fa-readme"></i>`}  ${card.labels[0]}</div>
-                        <div class="badge badge-outline bg-amber-50 badge-warning"><img src="./assets/vector.png" alt="">${card.labels[1]}</div>
+                        ${card.labels[1] ? `
+                        <div class="badge badge-outline bg-amber-50 badge-warning">
+                        <img src="./assets/vector.png" alt="">
+                        ${card.labels[1]}
+                        </div>` : ""}
                         </div>
                     </div>
                      <div class="border-t border-gray-300 pt-4 text-gray-700 space-y-2 text-base">
@@ -127,13 +144,82 @@ function togglebtn(id) {
 }
 
 
-// loadingSpinner
-function loadingActive() {
-    loadingSpinner.classList.remove("hidden");
-    cardContainer.innerHTML = " ";
-    console.log(loadingSpinner)
+// card detail modal 
+const openModal = async(id) => {
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const details = await res.json();
+    console.log(details.data);
+    const card = details.data;
+    const priorityClass = card.priority == "high" ? "badge-error" : card.priority == "low" ? "bg-gray-600 text-white" : "badge-warning";
+    const statusClass = card.status == "open" ? "badge-success" : "badge-primary";
+    console.log(card.labels)
+    
+    cardDetailModal.innerHTML = `
+        <div class="modal-box">
+        <h3 class="text-lg font-bold mb-2">${card.title}</h3>
+        <div class="flex gap-3 ">
+        <span class=" badge ${statusClass}">${card.status}</span> <span>  • Opened by ${card.assignee}</span>  <span>• ${new Date(card.updatedAt).toLocaleDateString()}</span>
+        </div>
+
+         <div class="card-actions justify-start my-5">
+                        <div class="badge bg-red-100 badge-outline badge-error">${card.labels[0] == "bug"? ` <i class="fa-solid fa-bug"></i>`: card.labels[0] == "enhancement"?`<i class="fa-solid fa-rocket"></i>`: `<i class="fa-brands fa-readme"></i>`}  ${card.labels[0]}</div>
+                        ${card.labels[1] ? `
+                        <div class="badge badge-outline bg-amber-50 badge-warning">
+                        <img src="./assets/vector.png" alt="">
+                        ${card.labels[1]}
+                        </div>` : ""}
+                        </div>
+        <p class="py-4">${card.description}</p>
+
+        <div class="bg-gray-100 p-4 grid grid-cols-2 justify-start rounded">
+            <div >
+              <p>Assignee:</p>
+              <p class="font-bold">${card.assignee}</p>
+            </div>
+            <div>
+              <p class="text-gray-600">Priority:</p>
+              <div class="badge  text-white  ${priorityClass}">${card.priority}</div>
+            </div>
+        </div>
+        <div class="modal-action">
+        <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-primary">Close</button>
+        </form>
+        </div>
+    </div>
+    `
+    cardDetailModal.showModal()
 }
-function loadingRemove() {
-    loadingSpinner.classList.add("hidden")
-}
-console.log(loadingSpinner)
+
+assignee
+: 
+"jane_smith"
+author
+: 
+"john_doe"
+createdAt
+: 
+"2024-01-15T10:30:00Z"
+description
+: 
+"The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior."
+id
+: 
+1
+labels
+: 
+(2) ['bug', 'help wanted']
+priority
+: 
+"high"
+status
+: 
+"open"
+title
+: 
+"Fix navigation menu on mobile devices"
+updatedAt
+: 
+"2024-01-15T10:30:00Z"
+[[Prototype]]
