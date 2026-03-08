@@ -192,34 +192,16 @@ const openModal = async(id) => {
     cardDetailModal.showModal()
 }
 
-assignee
-: 
-"jane_smith"
-author
-: 
-"john_doe"
-createdAt
-: 
-"2024-01-15T10:30:00Z"
-description
-: 
-"The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior."
-id
-: 
-1
-labels
-: 
-(2) ['bug', 'help wanted']
-priority
-: 
-"high"
-status
-: 
-"open"
-title
-: 
-"Fix navigation menu on mobile devices"
-updatedAt
-: 
-"2024-01-15T10:30:00Z"
-[[Prototype]]
+document.getElementById("search-btn").addEventListener("click", () => {
+    const searchInput = document.getElementById("searchInput");
+    const searchValue = searchInput.value.trim().toLowerCase();
+    console.log(searchValue);
+    
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+  .then(res => res.json())
+  .then(data => {
+      const allCard = data.data; // API response er data
+      displayCard(allCard);
+  })
+    
+ 
