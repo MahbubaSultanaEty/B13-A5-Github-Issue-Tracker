@@ -44,18 +44,66 @@
     </nav>
 
 
-    <main>
+    <main class="w-10/12 mx-auto">
     <!-- main tabs -->
-        <div class="flex gap-2 w-10/12 mx-auto mt-20 bg-white p-4 rounded shadow-2xs">
+        <div class="flex gap-2  mt-20 bg-white p-4 rounded shadow-xs">
             <button id="all-btn" onclick="toggleBtn('all-btn')" class="btn bg-[#570DF8] text-white min-w-[100px]">All</button>
             <button id="open-btn" onclick="toggleBtn('open-btn')" class="btn bg-white min-w-[100px] ">Open</button>
             <button id="close-btn" onclick="toggleBtn('close-btn')" class="btn bg-white min-w-[100px]">Closed</button>
          </div>
 
-    <!-- all issue cards -->
-         <section id="all-card-container">
+    <!-- main section -->
+         <section class=" bg-white my-4 rounded">
 
-         </section>
+            <!-- count and open and closed sign -->
+            <div class="flex justify-between items-center p-3 mt-4 border-b border-gray-400 ">
+                <!-- card count div -->
+                <div class="flex gap-2 items-center">
+                    <div class="border border-[#570DF8] w-10 h-10 rounded-full bg-purple-100 p-1 flex ">
+                    <img src="./assets/Aperture.png" alt="">
+                    </div>
+                    <div class=" ">
+                        <h3 class="text-xl font-semibold md:text-2xl">50 Issues</h3>
+                        <p class="text-xs font-semibold md:text-sm">Track and manage your project issues</p>
+                    </div>
+                    
+                </div>
+                <!-- open and closed sign -->
+                <div class="flex  gap-3 font-semibold text-sm md:text-sm md:mx-8 md:gap-6">
+                    <p><i class="fa-solid fa-circle text-emerald-600"></i> Open</p>
+                    <p><i class="fa-solid fa-circle text-[#570DF8]"></i> Closed</p>
+                </div>
+            </div>
+
+            <!-- card-container -->
+             <div id="card-container" class="my-4 grid justify-center md:grid-cols-4 sm:grid-cols-2">
+                <!-- card demo -->
+                 <div class="card bg-base-100 w-96 shadow-sm">
+            
+                <div class="card-body space-y-1">
+                    <div class="flex  justify-between">
+                        <div class="flex ">
+                            <img src="./assets/Open-Status.png" alt="">
+                        </div>
+                        <div class="badge badge-outline badge-secondary">NEW</div>
+                    </div>
+                    <div  >
+                        <h2 class="card-title">
+                        Fix navigation menu on mobile devices</h2>
+                        <p class="line-clamp-2 text-gray-700">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <div class="card-actions justify-start my-2">
+                        <div class="badge badge-outline"> <i class="fa-solid fa-bug"></i> Fashion</div>
+                        <div class="badge badge-outline"><img src="./assets/vector.png" alt="">Products</div>
+                        </div>
+                    </div>
+                     <div class="border-t border-gray-300 pt-4 text-gray-700 space-y-2 text-base">
+                        <p >#1by john_doe</p>
+                        <p>51/02/2024</p>
+                     </div>
+                </div>
+                </div>
+             </div>
+        </section>
     </main>
 </body>
 </html>
