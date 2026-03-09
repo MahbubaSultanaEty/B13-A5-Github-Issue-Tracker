@@ -198,10 +198,11 @@ document.getElementById("search-btn").addEventListener("click", () => {
     console.log(searchValue);
     
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
-  .then(res => res.json())
-  .then(data => {
-      const allCard = data.data; // API response er data
-      displayCard(allCard);
-  })
-    
+        .then(res => res.json())
+        .then(data => {
+            const allCard = data.data; // API response er data
+            
+        })
+    displayCard(allCard);
+})   
  
