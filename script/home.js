@@ -201,8 +201,8 @@ document.getElementById("search-btn").addEventListener("click", () => {
         .then(res => res.json())
         .then(data => {
             const allCard = data.data; // API response er data
-            
+            displayCard(allCard);
         })
-    displayCard(allCard);
+    
 })   
  
